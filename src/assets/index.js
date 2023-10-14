@@ -1,3 +1,3 @@
-import iconArrow from './icon-arrow.svg';
+import arrowIcon from './icon-arrow.svg';
 
-export { iconArrow };
+export { arrowIcon };
