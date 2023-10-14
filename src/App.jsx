@@ -2,15 +2,21 @@ import { useEffect, useState } from 'react';
 import { InputField, LineBreak } from './components';
 
 const App = () => {
-  const [data, setData] = useState({
-    day: 0,
-    month: 0,
-    year: 0,
-  });
+  const [input, setInput] = useState(null);
+  const [data, setData] = useState(null);
+  const [errors, setErrors] = useState(null);
 
   useEffect(() => {
+    console.log(input);
+  }, [input]);
+
+  const checkErrors = () => {};
+
+  const calculateAge = () => {
+    checkErrors();
     console.log(data);
-  }, [data]);
+    console.log(errors);
+  };
 
   return (
     <>
@@ -20,34 +26,50 @@ const App = () => {
             <InputField
               label={'day'}
               placeholder={'DD'}
-              value={data.day}
+              value={input?.day}
+              error={errors?.day}
               changeValue={(value) =>
-                setData((prevData) => ({ ...prevData, day: value }))
+                setInput((prevInput) => ({ ...prevInput, day: value }))
               }
             />
             <InputField
               label={'month'}
               placeholder={'MM'}
-              value={data.month}
+              value={input?.month}
+              error={errors?.day}
               changeValue={(value) =>
-                setData((prevData) => ({ ...prevData, month: value }))
+                setInput((prevInput) => ({ ...prevInput, month: value }))
               }
             />
             <InputField
               label={'year'}
               placeholder={'YY'}
-              value={data.year}
+              value={input?.year}
+              error={errors?.day}
               changeValue={(value) =>
-                setData((prevData) => ({ ...prevData, year: value }))
+                setInput((prevInput) => ({ ...prevInput, year: value }))
               }
             />
           </div>
           {/* /input-container */}
 
-          <LineBreak />
+          <LineBreak calculateAge={calculateAge} />
 
-          <section></section>
-          {/* /data */}
+          <section>
+            <h3 className='font-extrabold text-8xl italic mb-7'>
+              <span className='text-purple'>{data ? data.year : '- -'}</span>{' '}
+              years
+            </h3>
+            <h3 className='font-extrabold text-8xl italic mb-7'>
+              <span className='text-purple'>{data ? data.month : '- -'}</span>{' '}
+              months
+            </h3>
+            <h3 className='font-extrabold text-8xl italic mb-7'>
+              <span className='text-purple'>{data ? data.day : '- -'}</span>{' '}
+              days
+            </h3>
+          </section>
+          {/* /input */}
         </main>
       </div>
     </>

@@ -16,9 +16,9 @@ export default {
         },
         'off-black': 'hsl(0, 0%, 8%)',
       },
-    },
-    fontFamily: {
-      display: ['Poppins', 'sans-serif'],
+      fontFamily: {
+        display: ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [],
