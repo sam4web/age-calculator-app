@@ -21,7 +21,7 @@ const App = () => {
   return (
     <>
       <div className='w-full h-screen flex justify-center items-center bg-white-off px-3'>
-        <main className='bg-white rounded-2xl max-w-xl md:max-w-4xl w-full px-5 sm:px-7 py-12 md:p-14'>
+        <main className='bg-white rounded-2xl rounded-br-[7rem] md:rounded-br-[13rem] max-w-xl md:max-w-4xl w-full px-5 sm:px-7 py-12 md:p-14'>
           <div className='flex gap-3 md:gap-8 w-full'>
             <InputField
               label={'day'}
@@ -56,20 +56,20 @@ const App = () => {
           <LineBreak calculateAge={calculateAge} />
 
           <section>
-            <h3 className='font-extrabold text-8xl italic mb-7'>
+            <h3 className='data-display'>
               <span className='text-purple'>{data ? data.year : '- -'}</span>{' '}
               years
             </h3>
-            <h3 className='font-extrabold text-8xl italic mb-7'>
+            <h3 className='data-display'>
               <span className='text-purple'>{data ? data.month : '- -'}</span>{' '}
               months
             </h3>
-            <h3 className='font-extrabold text-8xl italic mb-7'>
+            <h3 className='data-display'>
               <span className='text-purple'>{data ? data.day : '- -'}</span>{' '}
               days
             </h3>
           </section>
-          {/* /input */}
+          {/* /data-display */}
         </main>
       </div>
     </>

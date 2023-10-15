@@ -17,3 +17,21 @@
     margin: 0;
   }
 }
+
+@layer components {
+  .input-field {
+    @apply w-full border-2 border-grey-light outline-none rounded-lg px-4 md:px-5 py-4 text-xl md:text-3xl placeholder:text-grey-smokey text-off-black focus:border-purple focus:placeholder:text-transparent transition;
+  }
+
+  .input-label {
+    @apply text-sm md:text-base uppercase text-grey-smokey tracking-[4px] font-normal mb-3;
+  }
+
+  .error-msg {
+    @apply text-light-red text-[15px] font-sans italic mt-2;
+  }
+
+  .data-display {
+    @apply font-extrabold text-5xl md:text-6xl lg:text-8xl italic mb-3 md:mb-8;
+  }
+}
