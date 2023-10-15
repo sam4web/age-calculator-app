@@ -20,7 +20,7 @@
 
 @layer components {
   .input-field {
-    @apply w-full border-2 border-grey-light outline-none rounded-lg px-4 md:px-5 py-4 text-xl md:text-3xl placeholder:text-grey-smokey text-off-black focus:border-purple focus:placeholder:text-transparent transition;
+    @apply w-full border border-grey-light outline-none rounded-lg px-4 md:px-5 py-4 text-xl md:text-3xl placeholder:text-grey-smokey text-off-black focus:border-purple focus:placeholder:text-transparent transition;
   }
 
   .input-label {

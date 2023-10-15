@@ -10,12 +10,78 @@ const App = () => {
     console.log(inputData);
   }, [inputData]);
 
-  const checkErrors = () => {};
+  const isLeap = (year) => {
+    return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  };
+
+  // const checkValidDay = () => {
+  //   const daysInMonth = [];
+  // };
+
+  const checkValidYear = () => {
+    const currentYear = new Date().getFullYear();
+    if (inputData.year > currentYear) {
+      setError((prevError) => ({
+        ...prevError,
+        year: 'must be in the past',
+      }));
+    } else if (inputData.year < 1900) {
+      setError((prevError) => ({
+        ...prevError,
+        year: 'must be valid date',
+      }));
+    }
+  };
+
+  const checkValidMonth = () => {
+    if (inputData.month < 1 || inputData.month > 12) {
+      setError((prevError) => ({
+        ...prevError,
+        day: 'must be valid date',
+      }));
+    }
+  };
+
+  const checkIsDataProvided = () => {
+    let dataProvided = [true, true, true];
+
+    if (!inputData?.day) {
+      setError((prevError) => ({
+        ...prevError,
+        day: 'this field is required',
+      }));
+      dataProvided[0] = false;
+    }
+
+    if (!inputData?.month) {
+      setError((prevError) => ({
+        ...prevError,
+        month: 'this field is required',
+      }));
+      dataProvided[1] = false;
+    }
+
+    if (!inputData?.year) {
+      setError((prevError) => ({
+        ...prevError,
+        year: 'this field is required',
+      }));
+      dataProvided[2] = false;
+    }
+
+    return dataProvided.every((ele) => ele);
+  };
+
+  const checkErrors = () => {
+    setError(null);
+    if (checkIsDataProvided()) {
+      checkValidYear();
+      checkValidMonth();
+    }
+  };
 
   const calculateAge = () => {
     checkErrors();
-    console.log(refinedData);
-    console.log(error);
   };
 
   return (
@@ -36,7 +102,7 @@ const App = () => {
               label={'month'}
               placeholder={'MM'}
               value={inputData?.month}
-              error={error?.day}
+              error={error?.month}
               changeValue={(value) =>
                 setInputData((prevInput) => ({ ...prevInput, month: value }))
               }
@@ -45,7 +111,7 @@ const App = () => {
               label={'year'}
               placeholder={'YY'}
               value={inputData?.year}
-              error={error?.day}
+              error={error?.year}
               changeValue={(value) =>
                 setInputData((prevInput) => ({ ...prevInput, year: value }))
               }
@@ -59,19 +125,19 @@ const App = () => {
             <h3 className='data-display'>
               <span className='text-purple'>
                 {refinedData ? refinedData.year : '- -'}
-              </span>
+              </span>{' '}
               years
             </h3>
             <h3 className='data-display'>
               <span className='text-purple'>
                 {refinedData ? refinedData.month : '- -'}
-              </span>
+              </span>{' '}
               months
             </h3>
             <h3 className='data-display'>
               <span className='text-purple'>
                 {refinedData ? refinedData.day : '- -'}
-              </span>
+              </span>{' '}
               days
             </h3>
           </section>

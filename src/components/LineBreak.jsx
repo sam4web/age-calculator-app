@@ -2,7 +2,7 @@ import { arrowIcon } from '../assets';
 
 const LineBreak = ({ calculateAge }) => {
   return (
-    <div className='relative my-12'>
+    <div className='relative my-11'>
       <hr className='border border-grey-light rounded-full' />
       <button
         className='absolute top-1/2 -translate-y-1/2 right-1/2 md:right-0 translate-x-1/2 md:translate-x-0 bg-purple rounded-full hover:bg-black transition'
