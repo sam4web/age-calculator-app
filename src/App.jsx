@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react';
 import { InputField, LineBreak } from './components';
 
 const App = () => {
-  const [input, setInput] = useState(null);
-  const [data, setData] = useState(null);
-  const [errors, setErrors] = useState(null);
+  const [inputData, setInputData] = useState(null);
+  const [refinedData, setRefinedData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log(input);
-  }, [input]);
+    console.log(inputData);
+  }, [inputData]);
 
   const checkErrors = () => {};
 
   const calculateAge = () => {
     checkErrors();
-    console.log(data);
-    console.log(errors);
+    console.log(refinedData);
+    console.log(error);
   };
 
   return (
@@ -26,28 +26,28 @@ const App = () => {
             <InputField
               label={'day'}
               placeholder={'DD'}
-              value={input?.day}
-              error={errors?.day}
+              value={inputData?.day}
+              error={error?.day}
               changeValue={(value) =>
-                setInput((prevInput) => ({ ...prevInput, day: value }))
+                setInputData((prevInput) => ({ ...prevInput, day: value }))
               }
             />
             <InputField
               label={'month'}
               placeholder={'MM'}
-              value={input?.month}
-              error={errors?.day}
+              value={inputData?.month}
+              error={error?.day}
               changeValue={(value) =>
-                setInput((prevInput) => ({ ...prevInput, month: value }))
+                setInputData((prevInput) => ({ ...prevInput, month: value }))
               }
             />
             <InputField
               label={'year'}
               placeholder={'YY'}
-              value={input?.year}
-              error={errors?.day}
+              value={inputData?.year}
+              error={error?.day}
               changeValue={(value) =>
-                setInput((prevInput) => ({ ...prevInput, year: value }))
+                setInputData((prevInput) => ({ ...prevInput, year: value }))
               }
             />
           </div>
@@ -57,15 +57,21 @@ const App = () => {
 
           <section>
             <h3 className='data-display'>
-              <span className='text-purple'>{data ? data.year : '- -'}</span>{' '}
+              <span className='text-purple'>
+                {refinedData ? refinedData.year : '- -'}
+              </span>
               years
             </h3>
             <h3 className='data-display'>
-              <span className='text-purple'>{data ? data.month : '- -'}</span>{' '}
+              <span className='text-purple'>
+                {refinedData ? refinedData.month : '- -'}
+              </span>
               months
             </h3>
             <h3 className='data-display'>
-              <span className='text-purple'>{data ? data.day : '- -'}</span>{' '}
+              <span className='text-purple'>
+                {refinedData ? refinedData.day : '- -'}
+              </span>
               days
             </h3>
           </section>
