@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { InputField, LineBreak } from './components';
+import { InputField, LineBreak, Attribution } from './components';
 
 const App = () => {
   const [inputData, setInputData] = useState(null);
@@ -195,6 +195,7 @@ const App = () => {
           </section>
           {/* /data-display */}
         </main>
+        <Attribution />
       </div>
     </>
   );

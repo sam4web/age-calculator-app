@@ -35,3 +35,11 @@
     @apply font-extrabold text-5xl md:text-6xl lg:text-8xl italic mb-3 md:mb-8;
   }
 }
+
+#attribution {
+  background-color: hsla(0, 0%, 100%, 0.851);
+}
+
+#attribution a {
+  color: hsl(228, 45%, 44%);
+}
