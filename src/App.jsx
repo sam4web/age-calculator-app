@@ -118,7 +118,7 @@ const App = () => {
         yearDiff--;
         monthDiff = 11;
       }
-      dayDiff += daysInMonth[inputData.month];
+      dayDiff += daysInMonth[inputData.month - 1];
     }
 
     return [yearDiff, monthDiff, dayDiff];
