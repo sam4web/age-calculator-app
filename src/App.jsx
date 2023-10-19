@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { InputField, LineBreak } from './components';
 
 const App = () => {
@@ -6,17 +6,24 @@ const App = () => {
   const [refinedData, setRefinedData] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    console.log(inputData);
-  }, [inputData]);
-
   const isLeap = (year) => {
     return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
   };
 
-  // const checkValidDay = () => {
-  //   const daysInMonth = [];
-  // };
+  const daysInMonth = [
+    31,
+    isLeap(inputData?.year) ? 29 : 28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31,
+  ];
 
   const checkValidYear = () => {
     const currentYear = new Date().getFullYear();
@@ -35,6 +42,18 @@ const App = () => {
 
   const checkValidMonth = () => {
     if (inputData.month < 1 || inputData.month > 12) {
+      setError((prevError) => ({
+        ...prevError,
+        day: 'must be valid date',
+      }));
+    }
+  };
+
+  const checkValidDay = () => {
+    if (
+      inputData.day > daysInMonth[inputData.month - 1] ||
+      inputData.day <= 0
+    ) {
       setError((prevError) => ({
         ...prevError,
         day: 'must be valid date',
@@ -77,11 +96,44 @@ const App = () => {
     if (checkIsDataProvided()) {
       checkValidYear();
       checkValidMonth();
+      checkValidDay();
     }
+  };
+
+  const calcDateDiff = () => {
+    const dateNow = new Date();
+    let yearDiff = dateNow.getFullYear() - inputData.year;
+    let monthDiff = dateNow.getMonth() - inputData.month + 1;
+    let dayDiff = dateNow.getDate() - inputData.day;
+
+    if (monthDiff < 0) {
+      yearDiff--;
+      monthDiff += 12;
+    }
+
+    if (dayDiff < 0) {
+      if (monthDiff > 0) {
+        monthDiff--;
+      } else {
+        yearDiff--;
+        monthDiff = 11;
+      }
+      dayDiff += daysInMonth[inputData.month];
+    }
+
+    return [yearDiff, monthDiff, dayDiff];
   };
 
   const calculateAge = () => {
     checkErrors();
+    if (!error) {
+      const [year, month, day] = calcDateDiff();
+      setRefinedData({
+        year: year,
+        month: month,
+        day: day,
+      });
+    }
   };
 
   return (
