@@ -34,7 +34,7 @@ Users should be able to:
 #### Links
 
 - Solution URL: [Solution URL](https://www.frontendmentor.io/solutions/age-calculator-app-a2QdObiex5)
-- Live Site URL: [Live Site URL](https://sam4web.github.io/age_calculator_app/)
+- Live Site URL: [Live Site URL](https://sam4web.github.io/age-calculator-app/)
 
 ### Built with
 
